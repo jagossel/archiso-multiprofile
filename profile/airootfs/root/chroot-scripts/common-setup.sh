@@ -21,5 +21,4 @@ cat > /etc/xdg/reflector/reflector.conf << EOF
 --sort rate
 EOF
 
-systemctl enable reflector.service
-systemctl enable reflector.timer
+systemctl enable reflector.{service,timer}

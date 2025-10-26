@@ -53,6 +53,27 @@
     }, {
         "name": "pacman-contrib",
         "profiles": [ "*" ]
+    }, {
+        "name": "plasma-desktop",
+        "profiles": [ "*" ]
+    }, {
+        "name": "sddm",
+        "profiles": [ "*" ]
+    }, {
+        "name": "kate",
+        "profiles": [ "*" ]
+    }, {
+        "name": "konsole",
+        "profiles": [ "*" ]
+    }, {
+        "name": "firefox",
+        "profiles": [ "*" ]
+    }, {
+        "name": "libreoffice-fresh",
+        "profiles": [ "*" ]
+    }, {
+        "name": "gimp",
+        "profiles": [ "*" ]
     }],
     "aur": [{
         "url": "https://aur.archlinux.org/doas.git",

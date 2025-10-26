@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-systemctl enable NetworkManager.service
+systemctl enable {NetworkManager.service,sddm.service}
