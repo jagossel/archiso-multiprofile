@@ -16,7 +16,6 @@ with multiple selectable profiles, all driven by a single config.json.
 - [Additional Notes](#additional-notes)
   - [File System Types](#file-system-types)
   - [Partition Size](#partition-size)
-  - [Profile Names](#profile-names-1)
 - [Build Process](#build-process)
 - [Installation Process](#installation-process)
 
@@ -37,7 +36,8 @@ execute as part of the installation process.
 
 ### Profile Names
 There are no defined profile names to use, the profile names are completely
-arbitrary.
+arbitrary.  The profiles names used in the original `config.json` file use
+`pc` and `vm`.  This is not required, any profile name can be used.
 
 ### `packages` Section
 An array of objects that define what packages to install for a particular
@@ -260,11 +260,6 @@ supported:
 The provided examples target UEFI systems using GPT. Ensure an EFI System
 Partition (FAT32) is created and mounted at `/boot/efi` for GRUB +
 `efibootmgr` to work as shown. Legacy BIOS installs may require different steps.
-
-### Profile Names
-Profile names are completely arbitrary.  There are no defined set of profiles
-names to use.  The profiles names used in the original `config.json` file use
-`pc` and `vm`.  This is not required, any profile name can be used.
 
 ## Build Process
 The process to make an ISO image is defined in `Makefile`.  To start the
