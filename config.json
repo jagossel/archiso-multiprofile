@@ -1,0 +1,137 @@
+{
+    "packages": [{
+        "name": "base",
+        "profiles": [ "*" ]
+    }, {
+        "name": "base-devel",
+        "profiles": [ "*" ]
+    }, {
+        "name": "linux",
+        "profiles": [ "*" ]
+    }, {
+        "name": "linux-firmware",
+        "profiles": [ "*" ]
+    }, {
+        "name": "networkmanager",
+        "profiles": [ "*" ]
+    }, {
+        "name": "wpa_supplicant",
+        "profiles": [ "pc" ]
+    }, {
+        "name": "dhcpcd",
+        "profiles": [ "*" ]
+    }, {
+        "name": "unzip",
+        "profiles": [ "*" ]
+    }, {
+        "name": "zip",
+        "profiles": [ "*" ]
+    }, {
+        "name": "grub",
+        "profiles": [ "*" ]
+    }, {
+        "name": "efibootmgr",
+        "profiles": [ "*" ]
+    }, {
+        "name": "vim",
+        "profiles": [ "*" ]
+    }, {
+        "name": "less",
+        "profiles": [ "*" ]
+    }, {
+        "name": "man-pages",
+        "profiles": [ "*" ]
+    }, {
+        "name": "man-db",
+        "profiles": [ "*" ]
+    }, {
+        "name": "reflector",
+        "profiles": [ "*" ]
+    }, {
+        "name": "archiso",
+        "profiles": [ "*" ]
+    }, {
+        "name": "pacman-contrib",
+        "profiles": [ "*" ]
+    }, {
+        "name": "plasma-desktop",
+        "profiles": [ "*" ]
+    }, {
+        "name": "sddm",
+        "profiles": [ "*" ]
+    }, {
+        "name": "kate",
+        "profiles": [ "*" ]
+    }, {
+        "name": "konsole",
+        "profiles": [ "*" ]
+    }, {
+        "name": "firefox",
+        "profiles": [ "*" ]
+    }, {
+        "name": "libreoffice-fresh",
+        "profiles": [ "*" ]
+    }, {
+        "name": "gimp",
+        "profiles": [ "*" ]
+    }],
+    "aur": [{
+        "url": "https://aur.archlinux.org/doas.git",
+        "name": "doas",
+        "profiles": [ "*" ],
+        "isDependency": true,
+        "order": 1
+    },{
+        "url": "https://aur.archlinux.org/yay.git",
+        "name": "yay",
+        "profiles": [ "*" ],
+        "isDependency": false,
+        "order": 2
+    }],
+    "preparationScripts": [ ],
+    "partitioning": [{
+        "profile": "vm",
+        "drives": [{
+            "name": "vda",
+            "layout": [{
+                "partition": "1",
+                "filesystemType": "fat32",
+                "size": "1G",
+                "mount": "/boot/efi",
+                "mountOrder": 2,
+                "label": "Boot"
+            }, {
+                "partition": "2",
+                "filesystemType": "ext4",
+                "size": "*",
+                "mount": "/",
+                "mountOrder": 1,
+                "label": "Arch Linux OS"
+            }, {
+                "partition": "3",
+                "filesystemType": "swap",
+                "size": "2xRAM",
+                "mount": "swap",
+                "mountOrder": 3
+            }]
+        }]
+    }],
+    "chrootScripts": [{
+        "path": "common-setup.sh",
+        "profiles": [ "*" ],
+        "order": 1
+    }, {
+        "path": "desktop-setup.sh",
+        "profiles": [ "pc", "vm" ],
+        "order": 2
+    }, {
+        "path": "vm-setup.sh",
+        "profiles": [ "vm" ],
+        "order": 3
+    }, {
+        "path": "pc-setup.sh",
+        "profiles": [ "pc" ],
+        "order": 3
+    }],
+    "postInstallScripts": [ ]
+}
