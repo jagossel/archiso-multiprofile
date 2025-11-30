@@ -74,6 +74,9 @@
     }, {
         "name": "gimp",
         "profiles": [ "*" ]
+    }, {
+        "name": "dialog",
+        "profiles": [ "*" ]
     }],
     "aur": [{
         "url": "https://aur.archlinux.org/doas.git",
