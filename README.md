@@ -302,14 +302,7 @@ There are other targets available:
 ## Installation Process
 After the ISO file has been created (and burned onto USB drive for real
 hardware), boot up the VM or the computer with the newly created ISO image.
-Invoke the following command:
-
-```bash
-bash install.sh profile-name
-```
-
-Where `profile-name` is the name of the profile to run the installation
-process for.
+The installation will begin automatically.
 
 After installation is finished, it will be powered off, giving
 an opportunity to remove the USB drive or to clear out the ISO setting on the
@@ -317,3 +310,4 @@ VM before booting to the newly installed system.
 
 Networking connection is not required during the installation process since
 the packages are stored in the live system image.
+
