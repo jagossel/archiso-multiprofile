@@ -241,6 +241,9 @@ the `preparationScripts`, `chrootScripts`, and `postInstallScripts`:
     { "path": "common-setup.sh",  "profiles": ["*"],       "order": 1 },
     { "path": "desktop-setup.sh", "profiles": ["pc","vm"], "order": 2 }
   ],
+  "users": [
+    { "name": "john", "fullName": "John Smith", "groups": [ "wheel" ], "profiles": [ "*" ] }
+  ],
   "postInstallScripts": []
 }
 ```
