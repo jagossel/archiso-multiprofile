@@ -40,29 +40,28 @@ for block_device in block_devices:
             break
     device_options[device_name] = f'{readable_value}{readable_unit}'
 
-option_selected = False
-abort_operation = False
-while not option_selected:
-    print('')
-    print('Available drives')
-    for device_option in device_options:
-        print(f'{device_option} ({device_options[device_option]})')
-    print('')
-    selected_option = input('Burn to which device [blank to abort]? ')
-    if selected_option.strip() == '':
-        option_selected = True
-        abort_operation = True
-    elif selected_option in device_options:
-        option_selected = True
-    else:
-        print(f'Invalid selection, {selected_option}.')
+drive_dialog_cmd = [ 'dialog' ]
+drive_dialog_cmd.append('--backtitle')
+drive_dialog_cmd.append('Custom Arch Linux Installer by jagossel')
+drive_dialog_cmd.append('--menu')
+drive_dialog_cmd.append('Select the profile:')
+drive_dialog_cmd.append('0')
+drive_dialog_cmd.append('0')
+drive_dialog_cmd.append('0')
+for device_option in device_options:
+    drive_dialog_cmd.append(device_option)
+    drive_dialog_cmd.append(device_options[device_option])
 
-if abort_operation:
+drive_dialog_result = subprocess.run(drive_dialog_cmd, stderr=subprocess.PIPE, text=True)
+
+selected_option = drive_dialog_result.stderr.strip()
+if drive_dialog_result.returncode == 1 or selected_option == '':
+    os.system('cls' if os.name == 'nt' else 'clear')
     exit()
 
 device_path = f'/dev/{selected_option}'
 
-print('')
+os.system('cls' if os.name == 'nt' else 'clear')
 print(f'Burning to {device_path}...')
 dd_cmd = [ 'dd', f'if={iso_path}', f'of={device_path}', 'status=progress' ]
 subprocess.run(dd_cmd, check=True)

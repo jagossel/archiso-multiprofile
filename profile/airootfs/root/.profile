@@ -1,0 +1,1 @@
+python /root/install.py
