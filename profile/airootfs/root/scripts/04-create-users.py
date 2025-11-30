@@ -2,6 +2,7 @@ import json
 import os
 import subprocess
 import sys
+
 PROFILE_NAME_REQUIRED = 'Profile name is required.'
 CANNOT_FIND_PATH = 'Cannot find the path, {0}.'
 CHROOT_PATH = '/mnt'
@@ -17,19 +18,25 @@ PASSWORD_BOX_SWITCH = '--passwordbox'
 PASSWORD_BOX_WIDTH = '0'
 PASSWORD_BOX_HEIGHT = '0'
 CHROOT_CMD_NAME = 'arch-chroot'
+
 if len(sys.argv) < 2:
     raise Exception(PROFILE_NAME_REQUIRED)
+
 profile_name = sys.argv[1]
 if not profile_name:
     raise Exception(PROFILE_NAME_REQUIRED)
+
 base_dir = os.path.dirname(os.path.realpath(__file__))
 root_dir = os.path.dirname(base_dir)
+
 config_path = os.path.join(root_dir, 'config.json')
 if not os.path.isfile(config_path):
     raise Exception(str.format(CANNOT_FIND_PATH, config_path))
+
 config = dict()
 with open(config_path, 'r') as reader:
     config = json.load(reader)
+
 users_config = config['users']
 for user_config in users_config:
     profiles = user_config['profiles']
@@ -85,6 +92,7 @@ for user_config in users_config:
             subprocess.run(dialog_cmd, check=True, stderr=subprocess.PIPE, text=True)
         else:
             set_password = True
+    os.system('clear')
     chroot_useradd_cmd = [ CHROOT_CMD_NAME, CHROOT_PATH, 'useradd', '--home-dir', f'/home/{user_name}', '--create-home', '--shell', '/bin/bash' ]
     if len(user_groups) > 0:
         chroot_useradd_cmd.append('--groups')

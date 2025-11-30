@@ -56,7 +56,7 @@ drive_dialog_result = subprocess.run(drive_dialog_cmd, stderr=subprocess.PIPE, t
 
 selected_option = drive_dialog_result.stderr.strip()
 if drive_dialog_result.returncode == 1 or selected_option == '':
-    os.system('cls' if os.name == 'nt' else 'clear')
+    os.system('clear')
     exit()
 
 device_path = f'/dev/{selected_option}'

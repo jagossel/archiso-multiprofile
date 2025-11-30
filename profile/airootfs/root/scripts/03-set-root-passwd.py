@@ -2,6 +2,7 @@ import json
 import os
 import subprocess
 import sys
+
 PROFILE_NAME_REQUIRED = 'Profile name is required.'
 CANNOT_FIND_PATH = 'Cannot find the path, {0}.'
 CHROOT_PATH = '/mnt'
@@ -18,13 +19,17 @@ PASSWORD_BOX_WIDTH = '0'
 PASSWORD_BOX_HEIGHT = '0'
 CHROOT_CMD_NAME = 'arch-chroot'
 ROOT_USER_NAME = 'root'
+
 if len(sys.argv) < 2:
     raise Exception(PROFILE_NAME_REQUIRED)
+
 profile_name = sys.argv[1]
 if not profile_name:
     raise Exception(PROFILE_NAME_REQUIRED)
+
 base_dir = os.path.dirname(os.path.realpath(__file__))
 root_dir = os.path.dirname(base_dir)
+
 set_password = False
 new_password_result = ''
 while not set_password:
@@ -73,6 +78,8 @@ while not set_password:
         subprocess.run(dialog_cmd, check=True, stderr=subprocess.PIPE, text=True)
     else:
         set_password = True
+
+os.system('clear')
 chpasswd_parameter = f'root:{new_password_value}'
 chroot_chpasswd_cmd = [ CHROOT_CMD_NAME, CHROOT_PATH, 'chpasswd' ]
 subprocess.run(chroot_chpasswd_cmd, input=chpasswd_parameter, text=True, capture_output=True, check=True)
