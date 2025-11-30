@@ -1,0 +1,7 @@
+builds/
+output/
+profile/airootfs/files
+profile/airootfs/repo
+profile/airootfs/root/config.json
+profile/profiledef.sh
+work/

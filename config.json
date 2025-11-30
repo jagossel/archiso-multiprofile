@@ -133,5 +133,16 @@
         "profiles": [ "pc" ],
         "order": 3
     }],
+    "users": [{
+        "name": "vmuser",
+        "fullName": "VM User",
+        "groups": [ "wheel" ],
+        "profiles": [ "vm", "cli" ]
+    }, {
+        "name": "pcuser",
+        "fullName": "PC User",
+        "groups": [ "wheel" ],
+        "profiles": [ "pc" ]
+    }],
     "postInstallScripts": [ ]
 }

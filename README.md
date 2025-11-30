@@ -12,6 +12,7 @@ with multiple selectable profiles, all driven by a single config.json.
   - [preparationScripts](#preparationscripts-section)
   - [partitioning](#partitioning-section)
   - [chrootScripts](#chrootscripts-section)
+  - [users](#users-section)
   - [postInstallScripts](#postinstallscripts-section)
 - [Additional Notes](#additional-notes)
   - [File System Types](#file-system-types)
@@ -157,6 +158,27 @@ of the installation process.
   denotes any profile will run the script.
 - `order`: The order the script will run; some scripts cannot be executed
 unless another script has already been executed.
+
+### `users` Section
+An array of objects defining what users to create after the packages have
+been installed, and the system has been configured.
+
+```json
+"users": [{
+  "name": "username",
+  "fullName": "User Full Name",
+  "groups": [ "group" ],
+  "profiles": [ "profile-name", ... ]
+}, ... ]
+```
+
+- `name`: The user name, e.g. `john`
+- `fullName`: The full name of the user, e.g. `John Smith`
+- `groups`: An array of strings defining what groups the user will be
+  assigned to.
+- `profiles`: An array of strings for the profile that the user is for; `*`
+  denotes any profile will have that user.
+
 
 ### `postInstallScripts` Section
 An array of objects defining what Python scripts to run after the
