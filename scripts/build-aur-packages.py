@@ -14,6 +14,15 @@ logger.addHandler(logHandler)
 base_dir = os.path.dirname(os.path.realpath(__file__))
 root_dir = os.path.dirname(base_dir)
 
+prebuild_dir = os.path.join(base_dir, 'prebuild')
+if os.path.isdir(prebuild_dir):
+    prebuild_script_glob = os.path.join(prebuild_dir, '*.sh')
+    for prebuild_script_path in glob.glob(prebuild_script_glob):
+        if not os.path.isfile(prebuild_script_path):
+            raise Exception(f'Cannot find the path, {prebuild_script_path}')
+        bash_cmd = [ 'bash', prebuild_script_path ]
+        subprocess.run(bash_cmd, check=True, cwd=prebuild_dir)
+
 builds_dir = os.path.join(root_dir, 'builds')
 if not os.path.isdir(builds_dir):
     raise Exception(f'Cannot find the path, {builds_dir}.')
