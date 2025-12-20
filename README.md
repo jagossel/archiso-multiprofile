@@ -17,6 +17,8 @@ with multiple selectable profiles, all driven by a single config.json.
 - [Additional Notes](#additional-notes)
   - [File System Types](#file-system-types)
   - [Partition Size](#partition-size)
+  - [Partitioning Assumptions](#partitioning-assumptions)
+  - [AUR Prebuild Scripts](#aur-prebuild-scripts)
 - [Build Process](#build-process)
 - [Installation Process](#installation-process)
 
@@ -285,6 +287,16 @@ supported:
 The provided examples target UEFI systems using GPT. Ensure an EFI System
 Partition (FAT32) is created and mounted at `/boot/efi` for GRUB +
 `efibootmgr` to work as shown. Legacy BIOS installs may require different steps.
+
+### AUR Prebuild Scripts
+
+It is possible to include prebuild scripts for the AUR package builds.  Just
+creeate a folder called `prebuild` under the `scripts` folder on the build
+machine (<repo-root>/scripts/prebuild) and place BASH scripts there.  The
+order is not gauranteed.  These scripts will be executed before any of the AUR
+packages are built.  This allows the ability to import any public keys that
+AUR packages may require, or better prepare the build system to build the AUR
+packages.
 
 ## Build Process
 The process to make an ISO image is defined in `Makefile`.  To start the
