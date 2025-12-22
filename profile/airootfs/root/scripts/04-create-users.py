@@ -95,9 +95,9 @@ for user_config in users_config:
     os.system('clear')
     chroot_useradd_cmd = [ CHROOT_CMD_NAME, CHROOT_PATH, 'useradd', '--home-dir', f'/home/{user_name}', '--create-home', '--shell', '/bin/bash' ]
     if len(user_groups) > 0:
+        user_groups_list = str.join(',', user_groups)
         chroot_useradd_cmd.append('--groups')
-        for user_group in user_groups:
-            chroot_useradd_cmd.append(user_group)
+        chroot_useradd_cmd.append(user_groups_list)
     chroot_useradd_cmd.append(user_name)
     subprocess.run(chroot_useradd_cmd, check=True)
     chroot_chfn_cmd = [ CHROOT_CMD_NAME, CHROOT_PATH, 'chfn', '--full-name', user_full_name, user_name ]
