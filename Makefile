@@ -32,6 +32,7 @@ preparation:
 iso: repo preparation
 	sudo cp config.json profile/airootfs/root/config.json
 	sudo mkarchiso -v -w work -o output profile
+	sudo python3 scripts/generate-iso-hash.py
 
 distclean: clean
 	sudo rm -Rfv profile/airootfs/files
